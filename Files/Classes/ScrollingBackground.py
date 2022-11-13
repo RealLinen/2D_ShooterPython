@@ -1,6 +1,7 @@
+
 class ScrollingBackground:
 
-    def __init__(self, screenheight, imagefile):
+    def __init__(self, pygame, screenheight, imagefile):
 
         self.img = pygame.image.load(imagefile)
 
