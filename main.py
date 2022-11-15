@@ -12,19 +12,14 @@ Background = ScrollingBackground(pygame, screenheight, "Files/Images/background.
 Player = GamePlayer(pygame, screen, "Files/Images/maincharacter.png")
 Player.increaseYBy = 5;Player.increaseXBy = 5;Levels = Levels();
 #==============================================#
-def getCount(t, NotTrueThenRemove = False):
-    count = 0
-    for i in t:
-        value = t[i]
-        if(NotTrueThenRemove):
-            if(value): count+=1
-        else:
-            if(value is not None):
-                count+=1
-        #####################
-
-    ###################################
-    return count
+def getCount(t,NotTrueThenRemove=False):
+	count=0
+	for i in t:
+		value=t[i]
+		if NotTrueThenRemove:
+			if value:count+=1
+		elif value is not None:count+=1
+	return count
 ###########################################################
 def StartGame():
     currentLevel, passedItems, gameOver, increaseDivisionBy = 1, 0, False, 2;
