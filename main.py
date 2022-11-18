@@ -23,7 +23,7 @@ def getCount(t,NotTrueThenRemove=False):
 ###########################################################
 def StartGame():
     currentLevel, passedItems, gameOver, increaseDivisionBy = 1, 0, False, 2;
-    Levels.add(currentLevel, [ 10, "Files/Images/dot.png", 2 ])
+    Levels.add(currentLevel, [ 10, "Files/Images/dot.png", 1 ])
     LevelDetails = Levels.get(currentLevel)
     pickedSpeed = 5
 
@@ -41,10 +41,11 @@ def StartGame():
         #======================== Drawing new Items
         if passedItems >= LevelDetails[0]:
             currentLevel+=1
-            Levels.add(currentLevel, [ randint(LevelDetails[0]+5, LevelDetails[0]*2), "Files/Images/dot.png", randint(LevelDetails[2], LevelDetails[2]+1) ])
+            iconPath = (os.path.exists("Files/Images/dot"+str(currentLevel)+".png") and "Files/Images/dot"+str(currentLevel)+".png" or "Files/Images/dot.png")
+            Levels.add(currentLevel, [ randint(LevelDetails[0]+5, LevelDetails[0]*2), iconPath, randint(LevelDetails[2], LevelDetails[2]+1) ])
             passedItems = 0;Obstacles.obstacles = {};Obstacles.funcs = {};increaseDivisionBy+=.5;pickedSpeed+=randint(1, 3)
             continue;
-        if getCount(Obstacles.obstacles, True) < (LevelDetails[2] or 2):
+        if getCount(Obstacles.obstacles, True) < (LevelDetails[2] or 1):
             Obstacles.spawnObstacle((LevelDetails[1] or "Files/Images/dot.png"), "down")
         #======================== Ending
         Background.UpdateCoords(100, time);Background.Show(screen);Player.updatePlayer();
